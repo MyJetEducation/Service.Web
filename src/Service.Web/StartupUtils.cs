@@ -72,5 +72,11 @@ namespace Service.Web
 			options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
 			options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 		}
+
+		public static void ConfigureAuthentication(this IServiceCollection services, string jwtAudience = null, string jwtSecret = null)
+		{
+			services.AddAuthentication(ConfigureAuthenticationOptions)
+				.AddJwtBearer(options => ConfigureJwtBearerOptions(options, jwtAudience ?? ProgramHelper.LoadJwtAudience(), jwtSecret ?? ProgramHelper.LoadJwtSecret()));
+		}
 	}
 }
