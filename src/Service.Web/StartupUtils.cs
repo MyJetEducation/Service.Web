@@ -9,6 +9,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using NSwag;
 using NSwag.AspNetCore;
+using Service.Core.Client.Constants;
+using Service.Core.Client.Helpers;
 
 namespace Service.Web
 {
@@ -30,7 +32,7 @@ namespace Service.Web
 		/// </summary>
 		public static void SetupSwaggerDocumentation(this IServiceCollection services, string documentName, string apiName) => services.AddSwaggerDocument(o =>
 		{
-			o.Title = $"MyJetEducation {apiName}";
+			o.Title = $"{Configuration.ProductName} {apiName}";
 			o.GenerateEnumMappingDescription = true;
 			o.DocumentName = documentName;
 			o.Version = "v1";
@@ -76,7 +78,10 @@ namespace Service.Web
 		public static void ConfigureAuthentication(this IServiceCollection services, string jwtAudience = null, string jwtSecret = null)
 		{
 			services.AddAuthentication(ConfigureAuthenticationOptions)
-				.AddJwtBearer(options => ConfigureJwtBearerOptions(options, jwtAudience ?? ProgramHelper.LoadJwtAudience(), jwtSecret ?? ProgramHelper.LoadJwtSecret()));
+				.AddJwtBearer(options => ConfigureJwtBearerOptions(options,
+					jwtAudience ?? ProgramHelper.LoadJwtAudience(),
+					jwtSecret ?? ProgramHelper.LoadJwtSecret())
+				);
 		}
 	}
 }
