@@ -13,7 +13,7 @@
   <ItemGroup>
     <PackageReference PrivateAssets="All" Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.9" />
     <PackageReference Include="MyJetEducation.Service.Core.Client" Version="1.0.36" />
-    <PackageReference PrivateAssets="All" Include="NSwag.AspNetCore" Version="13.16.1" />
+    <PackageReference PrivateAssets="All" Include="NSwag.AspNetCore" Version="13.17.0" />
     <PackageReference PrivateAssets="All" Include="System.IdentityModel.Tokens.Jwt" Version="6.23.1" />
   </ItemGroup>
 
